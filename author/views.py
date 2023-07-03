@@ -3,7 +3,7 @@ from rest_framework.viewsets import ModelViewSet
 
 from author.models import Author
 from serializers import AuthorSerializer
-from tools.permissions.permissions import IsOwnerOrAdmin
+
 
 
 class AuthorViewSet(ModelViewSet):
@@ -11,10 +11,8 @@ class AuthorViewSet(ModelViewSet):
     serializer_class = AuthorSerializer
 
     def get_permissions(self):
-        if self.action == 'create':
-            return [permissions.AllowAny()]
-        elif self.action in ['retrieve', 'update', 'partial_update', 'destroy']:
-            return [permissions.IsAuthenticated(), IsOwnerOrAdmin()]
+        if self.action in ['create', 'retrieve', 'update', 'partial_update', 'destroy']:
+            return [permissions.IsAdminUser()]
         return [permissions.AllowAny()]
 
     def perform_create(self, serializer):
