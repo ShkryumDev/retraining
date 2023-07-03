@@ -3,9 +3,9 @@ from django.urls import path, include
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView, SpectacularRedocView
 from rest_framework.routers import SimpleRouter
 
-from author.api.viewset import AuthorViewSet
-from book.api.viewset import BookViewSet
-from reader.api.viewset import ReaderViewSet
+from author.views import AuthorViewSet
+from book.views import BookViewSet
+from reader.views import ReaderViewSet
 
 router = SimpleRouter()
 router.register('readers', ReaderViewSet)
