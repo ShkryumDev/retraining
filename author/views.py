@@ -5,13 +5,12 @@ from author.models import Author
 from serializers import AuthorSerializer
 
 
-
 class AuthorViewSet(ModelViewSet):
     queryset = Author.objects.all()
     serializer_class = AuthorSerializer
 
     def get_permissions(self):
-        if self.action in ['create', 'retrieve', 'update', 'partial_update', 'destroy']:
+        if self.action in ['create', 'update', 'partial_update', 'destroy']:
             return [permissions.IsAdminUser()]
         return [permissions.AllowAny()]
 
